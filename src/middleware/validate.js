@@ -11,4 +11,4 @@ function validate(schema) {
         next();
     }
 }
-module.export = validate;
+module.exports = validate;
