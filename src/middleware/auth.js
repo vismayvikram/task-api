@@ -10,7 +10,7 @@ function authGuard(req, res, next) {
         const payload = verifyToken(token);
         req.user = { id: payload.userId }
         next()
-    } catch (err) next(new AppError('Invalid Token', 401));
+    } catch (err) { next(new AppError('Invalid Token', 401)); }
 }
 
 module.exports = authGuard;

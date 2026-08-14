@@ -3,6 +3,9 @@ const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
 const authRoute = require('./routes/auth.router');
+const taskRoute = require('./routes/task.router');
+
+app.use('/api/tasks', taskRoute);
 
 const app = express();
 app.use(helmet());
