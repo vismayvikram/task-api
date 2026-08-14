@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const authRoute = require('./routes/auth.router');
 const taskRoute = require('./routes/task.router');
+const errorHandler = require("./middleware/errorHandler")
 
 const app = express();
 app.use(helmet());
@@ -14,5 +15,5 @@ app.use('/api/auth', authRoute);
 app.use('/api/tasks', taskRoute);
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 app.use((req, res) => res.status(404).json({ error: 'Route Not Found' }));
-
+app.use(errorHandler)
 module.exports = app;
