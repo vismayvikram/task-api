@@ -2,7 +2,7 @@ const AppError = require('../utils/AppError');
 const prisma = require('../config/db');
 
 async function findOwnedTask(req) {
-    const task = prisma.task.findUnique({ where: { id: Number(req.params.id) } })
+    const task = await prisma.task.findUnique({ where: { id: Number(req.params.id) } })
     if (!task) throw new AppError("Task not found", 404);
     if (task.userId != req.user.id) throw new AppError("Forbidden", 403);
     return task;
@@ -10,7 +10,7 @@ async function findOwnedTask(req) {
 
 async function createTask(req, res, next) {
     try {
-        const { title, description, dueDate, status } = req.body;
+        const { title, description, status, dueDate } = req.body;
         const task = await prisma.task.create({
             data: {
                 title,
@@ -20,7 +20,7 @@ async function createTask(req, res, next) {
                 userId: req.user.id,
             },
         });
-        res.status(201).json({ task });
+        res.status(201).json(task);
     } catch (err) {
         next(err);
     }
@@ -49,7 +49,7 @@ async function listTask(rew, res, next) {
             ),
             prisma.task.count({ where }),
         ]);
-        res.json({ data: tasks, page, limit, total, totalPages: Math.ceil(total / limit) });
+        res.json({ data: task, page, limit, total, totalPages: Math.ceil(total / limit) });
     } catch (err) { next(err); }
 }
 
