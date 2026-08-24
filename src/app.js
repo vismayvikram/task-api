@@ -14,6 +14,7 @@ app.use(express.json());
 app.use('/api/auth', authRoute);
 app.use('/api/tasks', taskRoute);
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
+app.get('/', (req, res) => { res.json({ message: 'Task/Notes API is running', docs: '/api-docs', health: '/health' }); });
 app.use((req, res) => res.status(404).json({ error: 'Route Not Found' }));
 app.use(errorHandler)
 module.exports = app;
