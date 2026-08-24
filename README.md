@@ -1,13 +1,13 @@
 # Task/Notes API
 
-[![Node](https://img.shields.io/badge/node-%3E%3D18-green)](https://nodejs.org)
+
 
 A REST API for managing tasks and notes with JWT authentication, ownership-based
 authorization, and many-to-many tagging. Built as a baseline backend-competency
 project — the focus is on doing every unglamorous piece correctly: auth, validation,
 testing, and deployment.
 
-**Live demo:** `<add your deployed URL here>`
+**Live demo:** `https://task-api-u2y3.onrender.com`
 
 ---
 
@@ -21,7 +21,7 @@ testing, and deployment.
 - Centralized error handling with consistent JSON error responses
 - Request validation on every route (zod)
 - Automated tests covering auth, CRUD, and ownership (Jest + Supertest)
-- Dockerized, with a documented CI pipeline
+- Dockerized
 
 ## Tech Stack
 
